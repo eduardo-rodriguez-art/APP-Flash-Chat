@@ -8,12 +8,12 @@
 import UIKit
 
 class WelcomeViewController: UIViewController {
-
     
     @IBOutlet weak var titleLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Welcome"
 
         // Do any additional setup after loading the view.
     }
@@ -29,4 +29,13 @@ class WelcomeViewController: UIViewController {
     }
     */
 
+    @IBAction func registerPressed(_ sender: UIButton) {
+        self.navigationController?.pushViewController(RegisterViewController(), animated: true)
+    }
+    
+    
+    @IBAction func logInPressed(_ sender: UIButton) {
+        self.navigationController?.pushViewController(LogInViewController(), animated: true)
+    }
+    
 }

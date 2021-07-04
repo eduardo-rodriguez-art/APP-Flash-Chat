@@ -2,13 +2,14 @@
 //  RegisterViewController.swift
 //  APP-FlashChat
 //
-//  Created by José Eduardo Rodríguez Reyes on 01/07/21.
+//  Created by José Eduardo Rodríguez Reyes on 04/07/21.
 //
 
 import UIKit
 
 class RegisterViewController: UIViewController {
-
+    
+    
     @IBOutlet weak var emailTextField: UITextField!
     
     @IBOutlet weak var passwordTextField: UITextField!
@@ -31,5 +32,5 @@ class RegisterViewController: UIViewController {
     
     @IBAction func registerPressed(_ sender: UIButton) {
     }
-    
+
 }
