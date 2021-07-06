@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CLTypingLabel
 
 class WelcomeViewController: UIViewController {
     
@@ -14,10 +15,10 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Welcome"
-
-        // Do any additional setup after loading the view.
+        self.titleLabel.text = "⚡️FlashChat"
+        
+       
     }
-
 
     /*
     // MARK: - Navigation
