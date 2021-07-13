@@ -55,6 +55,9 @@
                             <state key="normal" title="Register">
                                 <color key="titleColor" name="BrandBlue"/>
                             </state>
+                            <connections>
+                                <action selector="registerPressed:" destination="-1" eventType="touchUpInside" id="Ao8-qB-OLk"/>
+                            </connections>
                         </button>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textfield" translatesAutoresizingMaskIntoConstraints="NO" id="uFu-AA-gCF">
                             <rect key="frame" x="0.0" y="20" width="414" height="137"/>

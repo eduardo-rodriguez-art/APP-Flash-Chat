@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LogInViewController: UIViewController {
 
@@ -19,7 +20,21 @@ class LogInViewController: UIViewController {
     }
 
     @IBAction func logInPressed(_ sender: UIButton) {
-        self.navigationController?.pushViewController(ChatViewController(), animated: true)
+        
+        if let email = emailTextField.text, let password = passwordTextField.text {
+            Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+                
+                if let result = result, error == nil {
+                    self.navigationController?.pushViewController(ChatViewController(email: result.user.email!, provider: .basic), animated: true)
+                }
+                // caso de error
+                else {
+                    let alert = UIAlertController(title: "Error", message: "Se ha producido un error al registar el usuario", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Aceptar", style: .default))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
     }
     
 }

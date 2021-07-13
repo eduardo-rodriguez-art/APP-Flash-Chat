@@ -6,7 +6,11 @@ target 'APP-FlashChat' do
 
   # Pods for APP-FlashChat
   # We added a version for this pod, with the next syntax
-  # If we don´t specified the version; the pod takes someone
+  # If we do not specified the version; the pod takes someone
   pod 'CLTypingLabel', '~> 0.4.0'
+  
+  # Add google firebase dependencies
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
 
 end
