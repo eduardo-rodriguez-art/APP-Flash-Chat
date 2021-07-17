@@ -16,9 +16,6 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         self.title = "Welcome"
         self.titleLabel.text = "⚡️FlashChat"
-        
-        
-       
     }
 
     @IBAction func registerPressed(_ sender: UIButton) {

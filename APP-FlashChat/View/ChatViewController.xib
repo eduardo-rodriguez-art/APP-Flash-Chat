@@ -5,12 +5,13 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatViewController" customModule="APP_FlashChat" customModuleProvider="target">
             <connections>
-                <outlet property="myTable" destination="d1M-eE-Fgg" id="kCG-Yb-9kU"/>
+                <outlet property="myTable" destination="Tp7-Dp-6k3" id="g9L-Mt-hyi"/>
                 <outlet property="sendMessageText" destination="Gxh-Nb-EFF" id="Mq3-MF-y8F"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,11 +21,35 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d1M-eE-Fgg">
-                    <rect key="frame" x="0.0" y="78" width="414" height="749"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tp7-Dp-6k3">
+                    <rect key="frame" x="0.0" y="114" width="414" height="668"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
+                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReusableCell" rowHeight="54" id="d2H-qO-Zft">
+                    <rect key="frame" x="0.0" y="138" width="414" height="54"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="d2H-qO-Zft" id="nfD-f6-CxO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="54"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </tableViewCellContentView>
+                    <connections>
+                        <outlet property="accessoryView" destination="Tp7-Dp-6k3" id="LWY-rH-6AT"/>
+                    </connections>
+                </tableViewCell>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pj3-Yk-e1O">
+                    <rect key="frame" x="0.0" y="44" width="414" height="55"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="55" id="JWP-Fk-t7L"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                    <state key="normal" title="Log Out">
+                        <color key="titleColor" systemColor="labelColor"/>
+                    </state>
+                    <connections>
+                        <action selector="LogOut:" destination="-1" eventType="touchUpInside" id="eqe-ZB-WE4"/>
+                    </connections>
+                </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DHp-Jb-Luk">
                     <rect key="frame" x="0.0" y="782" width="414" height="60"/>
                     <subviews>
@@ -66,9 +91,12 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="BrandPurple"/>
             <constraints>
+                <constraint firstItem="pj3-Yk-e1O" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="VsE-jj-nL8"/>
+                <constraint firstItem="pj3-Yk-e1O" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="e7b-RI-nFV"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="DHp-Jb-Luk" secondAttribute="bottom" constant="20" id="hSv-OQ-oyp"/>
                 <constraint firstItem="DHp-Jb-Luk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="jRw-2V-CFG"/>
                 <constraint firstItem="DHp-Jb-Luk" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="l2o-R3-Hbq"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="pj3-Yk-e1O" secondAttribute="trailing" id="zui-TV-pVx"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="92.410714285714278"/>
         </view>
@@ -81,5 +109,11 @@
         <namedColor name="BrandPurple">
             <color red="0.67500001192092896" green="0.43500000238418579" blue="0.9179999828338623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

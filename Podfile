@@ -12,5 +12,6 @@ target 'APP-FlashChat' do
   # Add google firebase dependencies
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+  pod 'GoogleSignIn'
 
 end
