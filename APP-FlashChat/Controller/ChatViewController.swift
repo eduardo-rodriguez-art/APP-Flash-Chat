@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 import GoogleSignIn
 
+
 enum ProviderType: String {
     case basic
     case google
@@ -16,11 +17,16 @@ enum ProviderType: String {
 
 class ChatViewController: UIViewController {
 
-    @IBOutlet weak var sendMessageText: UITextField!
-    @IBOutlet weak var myTable: UITableView!
-    
+    @IBOutlet weak var myTableView: UITableView!
+    @IBOutlet weak var messageText: UITextField!
     private let email: String
     private let provider: ProviderType
+    
+    private var messages: [Messages] = [
+        Messages(sender: "pepe@gmail.com", body: "Hello"),
+        Messages(sender: "eduardo@gmail.com", body: "Hi!"),
+        Messages(sender: "pepe@gmail.com", body: "How are you?")
+    ]
     
     init(email: String, provider: ProviderType) {
         self.email = email
@@ -33,9 +39,7 @@ class ChatViewController: UIViewController {
     }
     
     // Destructor
-    deinit {
-        
-    }
+    //deinit {}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,12 +47,18 @@ class ChatViewController: UIViewController {
         print(email)
         self.navigationItem.hidesBackButton = true
         
-        self.myTable.dataSource = self
+        self.myTableView.dataSource = self
+        //self.viewTable.delegate = self
+        
+        let nib = UINib(nibName: K.cellNibName, bundle: nil)
+        myTableView.register(nib, forCellReuseIdentifier: K.cellIdentifier)
     }
 
 
     @IBAction func sendMessagePressed(_ sender: UIButton) {
-        
+        if let message = messageText.text {
+            print(message)
+        }
     }
     
     
@@ -84,14 +94,32 @@ class ChatViewController: UIViewController {
     }
 }
 
+
 extension ChatViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // con el as declaramos que sea de la clase de la celda
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! MessageTableViewCell
         
+        // text in the cells
+        cell.nameLabel.text = messages[indexPath.row].body
+        
+        return cell
+        /*
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "ReusableCell")
+        
+        cell.textLabel?.text = messages[indexPath.row].body
+        return cell*/
     }
     
     
 }
+/*
+extension ChatViewController: UITableViewDelegate {
+    
+}*/
+

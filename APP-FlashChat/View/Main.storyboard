@@ -98,9 +98,7 @@
         </scene>
     </scenes>
     <designables>
-        <designable name="FWe-Ee-9to">
-            <size key="intrinsicContentSize" width="254.5" height="49"/>
-        </designable>
+        <designable name="FWe-Ee-9to"/>
     </designables>
     <resources>
         <namedColor name="BrandBlue">
