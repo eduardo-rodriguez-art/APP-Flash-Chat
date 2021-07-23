@@ -19,6 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Google Auth
         GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID
+        
+        // Google Firebase Firestore
+        let db = Firestore.firestore()
+        print(db)
         return true
     }
 
