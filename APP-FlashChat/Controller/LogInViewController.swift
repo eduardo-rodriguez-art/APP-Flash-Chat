@@ -40,9 +40,9 @@ class LogInViewController: UIViewController {
     }
 
     // inicio de sesion normal
-    // pepe@gmail.com  pepelalo
+    // pepe@gmail.com  pepelalo and pepe24@gmail.com
     @IBAction func logInPressed(_ sender: UIButton) {
-        
+
         if let email = emailTextField.text, let password = passwordTextField.text {
             Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
                 
@@ -96,7 +96,5 @@ extension LogInViewController: GIDSignInDelegate {
                 self.showHome(result: result, error: error, provider: .google)
             }
         }
-        
     }
-    
 }

@@ -12,8 +12,11 @@ class MessageTableViewCell: UITableViewCell {
     @IBOutlet weak var rightImage: UIImageView!
     @IBOutlet weak var messageBubble: UIView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var leftImage: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         // a medida que el mensaje crezca el corner radius se adapta a su altura
         self.messageBubble.layer.cornerRadius = messageBubble.frame.size.height / 5
     }

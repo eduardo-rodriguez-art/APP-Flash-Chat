@@ -40,7 +40,7 @@ class ChatViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Chat"
+        self.title = K.nameApp
         print(email)
         self.navigationItem.hidesBackButton = true
         
@@ -52,6 +52,16 @@ class ChatViewController: UIViewController {
         
         // se llama aqui porque leyo los datos, y se deben ver en la tabla
         self.loadMessages()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
     }
     
     /* // documentation from firebase -> Manage User
@@ -74,17 +84,18 @@ class ChatViewController: UIViewController {
                     print("There was an issue \(e)")
                 }else {
                     print("Succesfully data saved")
+                    DispatchQueue.main.async {
+                        self.messageText.text = ""
+                    }
                 }
             }
         }
-        messageText.text = ""
     }
     /*
      Actualizar las reglas en la base de datos
      para que solo los que esten registrados vean los mensajes*/
     /// Function that retrieving the information from database
     private func loadMessages() {
-        
         /* addSnapshotListener sustituyo a .getDocuments porque
           de esta forma se actualiza si se envian mas cosas al backend
          .order ordena de acuerdo a la hora que devuelve timeIntervalSince1970*/
@@ -109,6 +120,10 @@ class ChatViewController: UIViewController {
                         // Update the table-> but this function is waiting an answer:
                         DispatchQueue.main.async {
                             self.myTableView.reloadData()
+                            // en automatico nos aparezca la ultima linea
+                            // restamos 1 porque es array y tiene indice 0
+                            let myIndexPath = IndexPath(row: self.messages.count - 1, section: 0)
+                            self.myTableView.scrollToRow(at: myIndexPath, at: .top, animated: false)
                         }
                     }
                 })
@@ -129,7 +144,6 @@ class ChatViewController: UIViewController {
         defaults.synchronize()
         
         switch provider {
-
         case .basic:
             self.firebaseLogOut()
         case .google:
@@ -157,12 +171,29 @@ extension ChatViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // determinar quien envio los mensajes
+        let message = messages[indexPath.row]
+        
         // con el as declaramos que sea de la clase de la celda
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! MessageTableViewCell
         
         // text in the cells
-        cell.nameLabel.text = messages[indexPath.row].body
+        cell.nameLabel.text = message.body
         
+        // this is a message from the current user
+        if message.sender == Auth.auth().currentUser?.email {
+            cell.leftImage.isHidden = true
+            cell.rightImage.isHidden = false
+            cell.messageBubble.backgroundColor = UIColor(named: K.BrandColors.lightPurple)
+            cell.nameLabel.backgroundColor = UIColor(named: K.BrandColors.purple)
+        }
+        // the message is from another user
+        else {
+            cell.leftImage.isHidden = false
+            cell.rightImage.isHidden = true
+            cell.messageBubble.backgroundColor = UIColor(named: K.BrandColors.purple)
+            cell.nameLabel.backgroundColor = UIColor(named: K.BrandColors.lightPurple)
+        }
         return cell
         /*
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "ReusableCell")

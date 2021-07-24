@@ -10,6 +10,7 @@
 struct K {
     static let cellIdentifier = "ReusableCell"
     static let cellNibName = "MessageTableViewCell"
+    static let nameApp = "⚡️FlashChat"
     
     struct BrandColors {
         static let purple = "BrandPurple"

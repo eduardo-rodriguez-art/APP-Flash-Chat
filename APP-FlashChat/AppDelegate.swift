@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+import IQKeyboardManagerSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,6 +24,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Google Firebase Firestore
         let db = Firestore.firestore()
         print(db)
+        
+        // IQKeyboardManagerSwift
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = false
+        // si presionamos fuera del textField desaparece el teclado
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+        
         return true
     }
 
